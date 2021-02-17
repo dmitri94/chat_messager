@@ -25,6 +25,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     );
     animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutQuad); // зайдя в документацию нам очень показательно покажут многие способы анимации
     controller.forward();
+    animation.addStatusListener((status) {
+      // создается для того чтобы понять увеличивать и уменьшать анимацию
+      if (status == AnimationStatus.completed) {
+        // благодаря этому условию мы увеличиваем и уменьшаем нашу иконку
+        controller.reverse(from: 1.0);
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+    //controller.reverse(from: 1.0); // таким образом мы не увеличиваем а уменьшаем нашу анимацию
 
     controller.addListener(() {
       setState(() {});
