@@ -13,6 +13,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   // Предоставляет один тикер, который устанавливается только на тикер, пока включено текущее дерево,
   //
   AnimationController controller; // это переменная нашего контроллера
+  Animation animation; // создаем анимацию для нашего нашего кода
 
   @override
   void initState() {
@@ -20,13 +21,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this, // это наш тикер можно посмотреть на фото в папках или открыть сайт курса
-      upperBound: 100,
+      // upperBound: 100, // Когда мы используем CurvedAnimation мы не должные испльзовать upperBound
     );
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutQuad); // зайдя в документацию нам очень показательно покажут многие способы анимации
     controller.forward();
 
     controller.addListener(() {
       setState(() {});
-      print(controller.value); // 0.0 0.2... // благодаря этим цифрам мы меняем состояние цвета или размера ---создаем анимацию
+      print(animation.value); // 0.0 0.2... // благодаря этим цифрам мы меняем состояние цвета или размера ---создаем анимацию
     });
   }
 
@@ -46,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: controller.value, //влияем на размер иконки --очень красиво увеличиваеться размер
+                    height: animation.value * 100, //влияем на размер иконки --очень красиво увеличиваеться размер
                   ),
                 ),
                 Text(
