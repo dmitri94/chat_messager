@@ -20,6 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this, // это наш тикер можно посмотреть на фото в папках или открыть сайт курса
+      upperBound: 100,
     );
     controller.forward();
 
@@ -32,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.withOpacity(controller.value), // добавив суда наш контролер мы получаем плавный переход
+      backgroundColor: Colors.white, // добавив суда наш контролер мы получаем плавный переход
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -49,7 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   ),
                 ),
                 Text(
-                  'Flash Chat',
+                  '${controller.value.toInt()}%', // вместо текста мы сделали так чтобы загружались проценты до (100%)
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
