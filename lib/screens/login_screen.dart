@@ -1,7 +1,8 @@
+import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  static String id = 'login_screen';
+  static const String id = 'login_screen';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -80,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 child: MaterialButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, ChatScreen.id);
                     //Implement login functionality.
                   },
                   minWidth: 200.0,
