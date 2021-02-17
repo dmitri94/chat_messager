@@ -46,13 +46,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    height: controller.value, //влияем на размер иконки --очень красиво увеличиваеться размер
                   ),
                 ),
                 Text(
-                  '${controller.value.toInt()}%', // вместо текста мы сделали так чтобы загружались проценты до (100%)
+                  'Flash Chat',
+                  // '${controller.value.toInt()}%', // вместо текста мы сделали так чтобы загружались проценты до (100%)
                   style: TextStyle(
-                    fontSize: 45.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
