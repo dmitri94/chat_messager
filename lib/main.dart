@@ -17,7 +17,7 @@ class FlashChat extends StatelessWidget {
       ),
       initialRoute: 'first',
       routes: {
-        'first': (context) => WelcomeScreen(),
+        'first': (context) => WelcomeScreen(), // таким образом мы настраиваем нашу навигацию по экранам
         'second': (context) => LoginScreen(),
         'three': (context) => RegistrationScreen(),
       },
