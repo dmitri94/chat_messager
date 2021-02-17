@@ -24,16 +24,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
       // upperBound: 100, // Когда мы используем CurvedAnimation мы не должные испльзовать upperBound
     );
     animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutQuad); // зайдя в документацию нам очень показательно покажут многие способы анимации
-    controller.forward();
-    animation.addStatusListener((status) {
-      // создается для того чтобы понять увеличивать и уменьшать анимацию
-      if (status == AnimationStatus.completed) {
-        // благодаря этому условию мы увеличиваем и уменьшаем нашу иконку
-        controller.reverse(from: 1.0);
-      } else if (status == AnimationStatus.dismissed) {
-        controller.forward();
-      }
-    });
+
+    animation = ColorTween(begin: Colors.red, end: Colors.blue).animate(controller); // тут мы создали анимацию для смены цветов(двух состоянии)
+
+    controller.forward(f"");
+
+    // animation.addStatusListener((status) {
+    //   // создается для того чтобы понять увеличивать и уменьшать анимацию
+    //   if (status == AnimationStatus.completed) {
+    //     // благодаря этому условию мы увеличиваем и уменьшаем нашу иконку
+    //     controller.reverse(from: 1.0);
+    //   } else if (status == AnimationStatus.dismissed) {
+    //     controller.forward();
+    //   }
+    // });
     //controller.reverse(from: 1.0); // таким образом мы не увеличиваем а уменьшаем нашу анимацию
 
     controller.addListener(() {
@@ -43,9 +47,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // добавив суда наш контролер мы получаем плавный переход
+      backgroundColor: animation.value, // добавив суда наш контролер мы получаем плавный переход
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -58,7 +68,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: animation.value * 100, //влияем на размер иконки --очень красиво увеличиваеться размер
+                    // height: animation.value * 100, //влияем на размер иконки --очень красиво увеличиваеться размер
+                    height: 60.0,
                   ),
                 ),
                 Text(
