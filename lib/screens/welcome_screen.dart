@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flash_chat/components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen'; // эта статическая переменная была создана для навигации --- перехода не другие экраны
@@ -87,33 +88,48 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             SizedBox(
               height: 48.0,
             ),
-            buildPadding(context, 'Log In', LoginScreen.id, Colors.lightBlueAccent),
-            buildPadding(context, 'Register', RegistrationScreen.id, Colors.blueAccent),
+            RoundedButton(
+              color: Colors.lightBlueAccent,
+              title: 'Log In',
+              onPress: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+            ),
+            RoundedButton(
+              color: Colors.blueAccent,
+              title: 'Register',
+              onPress: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+            ),
+
+            //  buildPadding(context, 'Log In', LoginScreen.id, Colors.lightBlueAccent), // тут я создал рефакторинг через метод
+            //  buildPadding(context, 'Register', RegistrationScreen.id, Colors.blueAccent),
           ],
         ),
       ),
     );
   }
 
-  Padding buildPadding(BuildContext context, String textName, String idName, Color colorName) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        elevation: 5.0,
-        color: colorName,
-        borderRadius: BorderRadius.circular(30.0),
-        child: MaterialButton(
-          onPressed: () {
-            Navigator.pushNamed(context, idName); // таким образом мы вызываем экран логирования
-            //Go to login screen.
-          },
-          minWidth: 200.0,
-          height: 42.0,
-          child: Text(
-            textName,
-          ),
-        ),
-      ),
-    );
-  }
+  // Padding buildPadding(BuildContext context, String textName, String idName, Color colorName) {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(vertical: 16.0),
+  //     child: Material(
+  //       elevation: 5.0,
+  //       color: colorName,
+  //       borderRadius: BorderRadius.circular(30.0),
+  //       child: MaterialButton(
+  //         onPressed: () {
+  //           Navigator.pushNamed(context, idName); // таким образом мы вызываем экран логирования
+  //           //Go to login screen.
+  //         },
+  //         minWidth: 200.0,
+  //         height: 42.0,
+  //         child: Text(
+  //           textName,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // } // это у нас созданный метод для того чтобы не дублировать код (Можно создать и виджет)
 }
