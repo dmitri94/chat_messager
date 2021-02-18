@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     );
     animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutQuad); // зайдя в документацию нам очень показательно покажут многие способы анимации
 
-    animation = ColorTween(begin: Colors.red, end: Colors.blue).animate(controller); // тут мы создали анимацию для смены цветов(двух состоянии)
+    animation = ColorTween(begin: Colors.blueGrey.shade900, end: Colors.white).animate(controller); // тут мы создали анимацию для смены цветов(двух состоянии)
 
-    controller.forward(f"");
+    controller.forward();
 
     // animation.addStatusListener((status) {
     //   // создается для того чтобы понять увеличивать и уменьшать анимацию
@@ -72,10 +73,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
+                TypewriterAnimatedTextKit(
+                  text: ['Flash Chat'],
                   // '${controller.value.toInt()}%', // вместо текста мы сделали так чтобы загружались проценты до (100%)
-                  style: TextStyle(
+                  textStyle: TextStyle(
+                    color: Colors.black,
                     fontSize: 35.0,
                     fontWeight: FontWeight.w900,
                   ),
