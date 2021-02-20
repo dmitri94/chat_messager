@@ -32,10 +32,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
-                onChanged: (value) {
-                  //Do something with the user input.
-                },
-                decoration: kEmailButtonDecoration),
+              onChanged: (value) {
+                //Do something with the user input.
+              },
+              decoration: kTextFieldButtonDecoration.copyWith(hintText: 'Enter your email'), // метод copyWith - позволяет нам изменять параметны сонстанты
+            ),
             SizedBox(
               height: 8.0,
             ),
@@ -43,7 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onChanged: (value) {
                 //Do something with the user input.
               },
-              decoration: kPasswordButtonDecoration,
+              decoration: kTextFieldButtonDecoration.copyWith(hintText: 'Enter your password'),
             ),
             SizedBox(
               height: 24.0,
