@@ -10,11 +10,6 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
-        ),
-      ),
       initialRoute: WelcomeScreen.id, //уже не надо добавлять home это мы используем вместо него
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(), // таким образом мы настраиваем нашу навигацию по экранам
