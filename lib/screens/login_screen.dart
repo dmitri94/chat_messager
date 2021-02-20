@@ -1,5 +1,7 @@
+import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flash_chat/components/rounded_button.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -32,22 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onChanged: (value) {
                 //Do something with the user input.
               },
-              decoration: InputDecoration(
-                hintStyle: TextStyle(color: Colors.grey),
-                hintText: 'Enter your email',
-                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 3.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-              ),
+              decoration: kEmailButtonDecoration,
             ),
             SizedBox(
               height: 8.0,
@@ -56,44 +43,17 @@ class _LoginScreenState extends State<LoginScreen> {
               onChanged: (value) {
                 //Do something with the user input.
               },
-              decoration: InputDecoration(
-                hintStyle: TextStyle(color: Colors.grey),
-                hintText: 'Enter your password.',
-                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-              ),
+              decoration: kPasswordButtonDecoration,
             ),
             SizedBox(
               height: 24.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.lightBlueAccent,
-                elevation: 5.0,
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, ChatScreen.id);
-                    //Implement login functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            RoundedButton(
+              color: Colors.lightBlueAccent,
+              title: 'Log In',
+              onPress: () {
+                Navigator.pushNamed(context, ChatScreen.id);
+              },
             ),
           ],
         ),
